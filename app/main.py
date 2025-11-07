@@ -17,11 +17,13 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="MindMaze API", version="1.1.0")
 
-# CORS Middleware Setup
+# ✅ Updated CORS Allowed Origins
 origins = [
-    "https://kathanpurohit.github.io",  # GitHub Pages URL
-    "https://kathanpurohit.github.io/Fsd-miniProject",  # If hosted under a folder
-    "http://localhost:5173",  # Development (optional)
+    "http://localhost:5173",                    # Local dev
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "https://frontend-wx0b.onrender.com",       # ✅ Render Frontend URL
+    "https://kathanpurohit.github.io",          # (optional) if still hosting anywhere else
 ]
 
 app.add_middleware(
