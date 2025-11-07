@@ -2,7 +2,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import logging
-import os
 from dotenv import load_dotenv
 
 from app.database import client, db
@@ -19,13 +18,13 @@ app = FastAPI(title="MindMaze API", version="1.1.0")
 
 # ✅ Updated CORS Allowed Origins
 origins = [
-    "http://localhost:5173",                    # Local dev
+    "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
-    "https://frontend-wx0b.onrender.com",       # ✅ Render Frontend URL
-    "https://kathanpurohit.github.io",          # (optional) if still hosting anywhere else
+    "https://frontend-wx0b.onrender.com",  # ✅ Render Frontend URL
 ]
 
+# ✅ Apply CORS Globally
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -34,9 +33,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include API Routers
-app.include_router(auth.router)
-app.include_router(game.router)
+# ✅ Corrected Router Prefixes
+app.include_router(auth.router, prefix="/auth")
+app.include_router(game.router, prefix="/api")
 app.include_router(websocket.router)
 
 # Application Lifecycle Events
