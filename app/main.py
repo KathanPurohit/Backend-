@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 # ✅ Corrected Router Prefixes
-app.include_router(auth.router, prefix="/auth")
+app.include_router(auth.router, prefix="/api")
 app.include_router(game.router, prefix="/api")
 app.include_router(websocket.router)
 
@@ -62,3 +62,4 @@ async def shutdown_event():
 async def root():
     """Root endpoint to check if the API is running."""
     return {"message": "Welcome to the MindMaze API!", "status": "online"}
+
